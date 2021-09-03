@@ -7,7 +7,7 @@ int main()
 {
     int n, w, d;
     cin >> n >> w >> d;
-
+    
     vector<int> adj[n + 1];
     int walkw[n + 1];
     for (int i = 1; i < n; ++i)
