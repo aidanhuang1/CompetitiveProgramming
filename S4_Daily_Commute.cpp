@@ -1,4 +1,10 @@
 #include <bits/stdc++.h>
+#define MP make_pair
+#define PB push_back
+#define INF (int)1e9
+#define EPS 1e-9
+#define PI 3.1415926535897932384626433832795
+#define mod 1000000007
 #define ll long long
 #define INF 1e9;
 using namespace std;
