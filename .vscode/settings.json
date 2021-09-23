@@ -2,6 +2,10 @@
     "files.associations": {
         "vector": "cpp",
         "__tuple": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "utility": "cpp",
+        "queue": "cpp",
+        "ostream": "cpp",
+        "tuple": "cpp"
     }
 }
