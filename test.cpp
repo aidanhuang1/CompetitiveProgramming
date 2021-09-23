@@ -48,23 +48,25 @@ int main()
 
     cout << endl;
     tuple<string, string, int> tp2 = make_tuple("Hello", "world", 100);
-	string s1, s2; int x;
-	tie(s1, s2, x) = tp2;
-	cout << s1 << " " << s2 << " " << x << endl;
-
+    string s1, s2;
+    int x;
+    tie(s1, s2, x) = tp2;
+    cout << s1 << " " << s2 << " " << x << endl;
 
     set<int> s;
     s.insert(1);
     s.insert(2);
     s.insert(2);
-    for (int element: s) {
+    for (int element : s)
+    {
         cout << element;
     }
     cout << endl;
     map<int, int> m;
     m[0] = 1;
     m[1] = 2;
-    for (pair<int, int> i: m) {
+    for (pair<int, int> i : m)
+    {
         printf("%d %d \n", i.first, i.second);
     }
 
@@ -72,11 +74,21 @@ int main()
     stack.push(1);
     stack.push(2);
     stack.push(3);
-    while(!stack.empty()) {
+    while (!stack.empty())
+    {
         cout << stack.top();
         stack.pop();
     }
 
+    queue<int> qu;
+    qu.push(12);
+    qu.push(13);
+    while (!qu.empty())
+    {
+        cout << qu.front() << endl;
+        qu.pop();
+    }
+    cout << "yes" <<endl;
 
     return 0;
 }

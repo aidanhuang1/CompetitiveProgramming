@@ -6,6 +6,8 @@
         "utility": "cpp",
         "queue": "cpp",
         "ostream": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "random": "cpp",
+        "iostream": "cpp"
     }
 }
