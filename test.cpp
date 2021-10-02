@@ -12,6 +12,7 @@ typedef vector<int> v32;
 
 int main()
 {
+
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
@@ -88,7 +89,18 @@ int main()
         cout << qu.front() << endl;
         qu.pop();
     }
-    cout << "yes" <<endl;
+    cout << "yes" << endl;
 
+    string a = "test";
+    reverse(a.begin(), a.end());
+    cout << a << endl;
+
+    string t = a.substr(1,0);
+    cout << t << endl;
+
+    cout << sqrt(64) << endl;
+    for (int i=0; i<=9; ++i) {
+        cout << i << endl;
+    }
     return 0;
 }
