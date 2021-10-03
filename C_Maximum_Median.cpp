@@ -3,6 +3,8 @@
 #define MOD 1000000007
 using namespace std;
 typedef long long ll;
+
+//Code exceeds time limit
  
 int main() {
 cin.sync_with_stdio(0);
@@ -15,6 +17,12 @@ for (int i=0; i<n; i++) {
     cin >> array[i];
 }
 sort(array, array+n);
+while(k>0) {    
+    array[(0+n)/2]++;
+    k--;
+    sort(array, array+n);
+}
+cout << array[(0+n/2)];
 
 return 0;
 }
