@@ -102,5 +102,6 @@ int main()
     for (int i=0; i<=9; ++i) {
         cout << i << endl;
     }
+    cout << 7/3 << endl;
     return 0;
 }
