@@ -1,13 +1,18 @@
 {
-    "files.associations": {
-        "vector": "cpp",
-        "__tuple": "cpp",
-        "array": "cpp",
-        "utility": "cpp",
-        "queue": "cpp",
-        "ostream": "cpp",
-        "tuple": "cpp",
-        "random": "cpp",
-        "iostream": "cpp"
-    }
+  "files.associations": {
+    "vector": "cpp",
+    "__tuple": "cpp",
+    "array": "cpp",
+    "utility": "cpp",
+    "queue": "cpp",
+    "ostream": "cpp",
+    "tuple": "cpp",
+    "random": "cpp",
+    "iostream": "cpp"
+  },
+  "files.exclude": {
+    "**/*.exe": true,
+    "**/*.bin": true,
+    "test": true
+  }
 }
