@@ -77,7 +77,7 @@ int main()
     stack.push(3);
     while (!stack.empty())
     {
-        cout << stack.top();
+        cout << stack.top() << endl;
         stack.pop();
     }
 
@@ -103,5 +103,23 @@ int main()
         cout << i << endl;
     }
     cout << 7/3 << endl;
+
+    string tt = "abcde";
+    cout << tt[0] << endl;
+    if (tt[0]=='a') {
+        cout << "it works" << endl;
+    }
+//     vector<vector<bool>> bArray;
+//     for(auto i = 0; i < 5; i++) 
+//     for(auto j = 0; j < 5; j++)   
+//         bArray[i][j] = false; 
+// for(auto i = 0; i < 5; i++) 
+//     for(auto j = 0; j < 5; j++)  
+//     cout <<bArray[i][j] << endl;
+    vector<vector<bool>> bArray;
+    bArray.resize(10, vector<bool>(10));
+    bArray[0][0]=true;
+    cout<<boolalpha<<bArray[0][0]<<endl;
+    cout<<"yes"<<endl;
     return 0;
 }
