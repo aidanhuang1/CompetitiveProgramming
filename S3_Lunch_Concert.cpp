@@ -38,8 +38,6 @@ while(left<=right) {
                 totaltime_rightside += distance*friends[i][1];
             }
         }
-
-
     }
     if (totaltime_rightside>totaltime_leftside) {
         left = mid+1;
@@ -49,7 +47,6 @@ while(left<=right) {
     besttime = min(besttime, totaltime_leftside+totaltime_rightside);
 }
 cout << besttime << endl;
-
 
 return 0;
 }
