@@ -5,41 +5,29 @@
 using namespace std;
 typedef long long ll;
 
-vector<vector<ll>> friends;
-
+vector<ll> p, w, d;
+ll n;
 ll findtime(ll mid) {
     ll temptime = 0;
-    for (int i=0; i<friends.size(); i++) {
+    for (int i=0; i<n; i++) {
         ll timeforfriendtowalk = 0;
-        // if (mid>=friends[i][0]) { //if the friend is to the left of the concert
-        ll distance = abs(mid-friends[i][0])-friends[i][2]; //how far the friend has to walk
-        if (distance>0) { //friend is outside the hearing range, else we can ignore
-            // totaltime_leftside += distance*friends[i][1];
-            temptime += distance*friends[i][1];
+        ll distance = abs(mid-p[i])-d[i];
+        if (distance>0) {
+            temptime += distance*w[i];
+            }
         }
-        }
-        // else if (mid<friends[i][0]) { //if the friend is to the right of the concert
-        //     ll distance = abs(mid-friends[i][0])-friends[i][2]; //how far the friend has to walk
-        //     if (distance>0) { //friend is outside the hearing range, else we can ignore
-        //         totaltime_rightside += distance*friends[i][1];
-        //     }
-        // }
         return temptime;
     }
-    
 
- 
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-ll n;
+
 cin >> n;
-friends.resize(n, vector<ll>(n));
+p.resize(n); w.resize(n); d.resize(n); 
 for (int i=0; i<n; i++) {
-    for (int j=0; j<3; j++) {
-        cin >> friends[i][j];
-    }
+    cin >>p[i] >> w[i]>>d[i];
 }
 
 ll left = 0, right = 2e9, besttime = 2e9, currentpos=0;
