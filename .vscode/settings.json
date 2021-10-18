@@ -9,7 +9,8 @@
     "tuple": "cpp",
     "random": "cpp",
     "iostream": "cpp",
-    "limits": "cpp"
+    "limits": "cpp",
+    "algorithm": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,
