@@ -1,0 +1,1 @@
+cout << piece <<endl;
