@@ -16,17 +16,18 @@ for (int i=0; i<n; i++) {
     cin >> x;
     g = __gcd(g, x);
 }
-if (g==1) {
+if (g<=1) {
     cout << "DNE"<<endl; return 0;
 }
+
 for (ll i=2; i*i<=g; i++) {
-    while(g%i==0) {
+    while(g%i==0) { //g divisible by i
         ans = max(ans, i);
         g/=i;
     }
 }
-ans = max(ans, g);
-cout<<ans<<endl;
+ans = max(ans, g);cout<<ans<<endl;
+
  
 return 0;
 }
