@@ -15,7 +15,7 @@ void ant() {
     q.pop();
     for (int i: adj[cur]) {
         if (antdist[i]==-1) {
-            antdist[i] = antdist[cur]+4;
+            antdist[i] = antdist[cur]+4;    
             q.push(i);
             }
         }
