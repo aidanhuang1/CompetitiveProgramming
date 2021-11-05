@@ -9,19 +9,21 @@ int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-int n; cin>>n;
-vector<int> v[10];
+int n, mod;
+cin>>n>>mod;
+vector<int> v[mod];
 for (int i=0, x; i<n; i++) {
     cin>>x;
-    v[x%10].push_back(x);
-} 
-for (int i=0; i<10; i++) {
-    sort(v[i].begin(), v[i].end(), greater<int>());
+    v[x%mod].push_back(x);
+}
+for (int i=0; i<mod; i++) {
+    sort(v[i].begin(), v[i].end());
     for (auto j: v[i]) {
         cout<<j<<" ";
     }
 }
 cout<<endl;
+
 
 return 0;
 }
