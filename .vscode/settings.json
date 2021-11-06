@@ -17,7 +17,8 @@
     "string": "cpp",
     "iosfwd": "cpp",
     "iterator": "cpp",
-    "ios": "cpp"
+    "ios": "cpp",
+    "map": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,

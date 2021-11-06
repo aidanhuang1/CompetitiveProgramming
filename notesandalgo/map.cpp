@@ -23,5 +23,13 @@ v2.insert({1, "hello"});
 cout<<v2[v1["hello"]]<<endl;
 
 
+//This is probably the best method
+map<string, vector<string>> m;
+m.insert({"a1", {"a2"}});
+cout<<m["a1"][0]<<endl;
+for (string i: m["a1"]) {
+    cout<<i<<endl;
+}
+
 return 0;
 }

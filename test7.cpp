@@ -11,7 +11,10 @@ cin.tie(0);
 
 map<string, vector<string>> m;
 m.insert({"a1", {"a2"}});
-cout<<m["a1"]
+cout<<m["a1"][0]<<endl;
+for (string i: m["a1"]) {
+    cout<<i<<endl;
+}
  
 return 0;
 }
