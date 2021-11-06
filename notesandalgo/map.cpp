@@ -9,15 +9,12 @@ int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-bool test[5];
-memset(test, false, sizeof(test));
+unordered_map<string,int>m;
+m["test"]=1;
 
-for (auto i: test) {
-    cout<<i<<endl;
-}
-cout<<boolalpha<<test[0]<<endl;
+vector<unordered_map<string, int>> v(100);
+v[0].insert(make_pair("Node", 0));
+cout<<v[0]<<endl;
 
-cout<<(int)1e8<<endl;
- 
 return 0;
 }

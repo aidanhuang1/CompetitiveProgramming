@@ -4,20 +4,19 @@
 #define MOD 1000000007
 using namespace std;
 typedef long long ll;
+
+vector<int> adj[(int)1e5]; 
  
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-bool test[5];
-memset(test, false, sizeof(test));
-
-for (auto i: test) {
-    cout<<i<<endl;
+int m, n;
+for (int i=0; i<m; i++) {
+    string a, b;
+    cin>>a>>b;
+    
 }
-cout<<boolalpha<<test[0]<<endl;
-
-cout<<(int)1e8<<endl;
  
 return 0;
 }
