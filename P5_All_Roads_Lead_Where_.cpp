@@ -27,7 +27,7 @@ void bfs(string start, string end) {
             while(!order.empty()) {
                 cout<<order.top();order.pop();
             }
-            cout<<endl;
+            cout<<endl; 
             return;
         }
         for (string next: adj[cur]) {
