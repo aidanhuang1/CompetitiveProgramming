@@ -18,7 +18,19 @@
     "iosfwd": "cpp",
     "iterator": "cpp",
     "ios": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "__bit_reference": "cpp",
+    "__hash_table": "cpp",
+    "__tree": "cpp",
+    "filesystem": "cpp",
+    "forward_list": "cpp",
+    "initializer_list": "cpp",
+    "regex": "cpp",
+    "set": "cpp",
+    "string_view": "cpp",
+    "unordered_map": "cpp",
+    "unordered_set": "cpp",
+    "valarray": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,
