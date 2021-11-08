@@ -30,7 +30,8 @@
     "string_view": "cpp",
     "unordered_map": "cpp",
     "unordered_set": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "span": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,
