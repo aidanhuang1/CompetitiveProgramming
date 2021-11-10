@@ -4,62 +4,63 @@
 #define MOD 1000000007
 using namespace std;
 typedef long long ll;
-int m, n, sr, sc, er, ec;
 
-char grid[1001][1001];
+struct moving {
+    int row;
+    int col;
+    int moves;
+};
+
+int m, n, startr, startc, endr, endc;
+char maze[1001][1001]; bool vis[1001][1001]; int dist[1001][1001];
 int mr[] = {-1, 0, 1, 0, -2, -1, 1, 2, 2, 1, -1, -2};
-int mc[] = {0, 1, 0, -1, 1, 2,2,1,-1,-2,-2,-1};
+int mc[] = {0, 1, 0, -1, 1, 2, 2, 1, -1, -2, -2, -1};
 
-bool valid(pair<int, int> x) {
-    if (x.first>=0 && x.first<m && x.second>=0 && x.second<n && grid[x.first][x.second]=='.') {
+bool valid(int row, int col) {
+    if (row>=0 && row<m && col>=0 && col<n && maze[row][col]=='.') {
         return true;
     }
     return false;
 }
 
-int search(pair<int, int> start, pair<int, int> end) {
-    int moves = 0;
-    queue<pair<int, int>> q;
-    int dist[m][n]; bool vis[m][n];
-    memset(dist, 0, sizeof dist); memset(vis, false, sizeof vis);
-    q.push(start);
-    vis[start.first][start.second] = true;
+void search() {
+    queue<moving> q;
+    memset(vis, false, sizeof vis);
+    memset(dist, 0, sizeof dist);
+    q.push({startr, startc, 0});
+    vis[startr][startc] = true;
     while(!q.empty()) {
-        pair<int, int> cur = q.front(); q.pop();
-        if (vis[end.first][end.second]) { return moves;}
+        moving cur = q.front(); q.pop();
+        if (cur.row==endr && cur.col==endc) {
+            cout<<cur.moves<<endl;
+            return;
+        }
         for (int i=0; i<12; i++) {
-            int newr = cur.first+mr[i];
-            int newc = cur.second+mc[i];
-            if (valid({newr, newc}) && !vis[newr][newc]) {
-                vis[newr][newc] = true;
-                q.push({newr, newc});
-                
+            moving next = {cur.row+mr[i], cur.col+mc[i], cur.moves+1};
+            if (valid(next.row, next.col) && !vis[next.row][next.col]) {
+                vis[next.row][next.col] = true;
+                q.push(next);
             }
         }
-        moves++;
     }
-    if (vis[end.first][end.second]) {
-        return moves;
-    } 
-    return -1;
-    
+    if(!vis[endr][endc]) cout<<-1<<endl;
+    return;
 }
+
 
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-
 cin>>m>>n;
-cin>>sr>>sc;
-cin>>er>>ec;
+cin>>startr>>startc;
+cin>>endr>>endc;
+startr--;startc--;endr--;endc--;
 for (int i=0; i<m; i++) {
     for (int j=0; j<n; j++) {
-        cin>>grid[i][j];
+        cin>>maze[i][j];
     }
 }
-
-search({sr, sc}, {er, ec});
- 
+search();
 return 0;
 }
