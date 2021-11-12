@@ -9,8 +9,12 @@ struct data {
     int count;
 };
 
-bool cmp()
- 
+struct CompareByValue {
+  bool operator() (const data& a, const data& b) const {
+    return a.count < b.count;
+  };
+}; 
+
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
@@ -24,9 +28,18 @@ for (int i=0, m, k; i<n; i++) {
         list[x]++;
 
     }
+    int max=0; string word;
+    for (auto i: list)  {
+        if (i.second>max) {
+            word = i.first;
+        }
+    }
+    
 
     //use custom comparator to sort by value for the map
-    cout<<list["brown"]<<endl;
+    // cout<<list["brown"]<<endl;
+    cout<<word<<endl;
+    
 }
 
  
