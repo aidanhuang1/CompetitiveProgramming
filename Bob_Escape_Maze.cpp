@@ -12,7 +12,7 @@ struct moving {
 };
 
 int m, n, startr, startc, endr, endc;
-char maze[1001][1001]; bool vis[1001][1001]; int dist[1001][1001];
+char maze[1001][1001]; 
 int mr[] = {-1, 0, 1, 0, -2, -1, 1, 2, 2, 1, -1, -2};
 int mc[] = {0, 1, 0, -1, 1, 2, 2, 1, -1, -2, -2, -1};
 
@@ -25,8 +25,9 @@ bool valid(int row, int col) {
 
 void search() {
     queue<moving> q;
-    memset(vis, false, sizeof vis);
-    memset(dist, 0, sizeof dist);
+    bool vis[1001][1001] = {false}; 
+    int dist[1001][1001] = {0};
+
     q.push({startr, startc, 0});
     vis[startr][startc] = true;
     while(!q.empty()) {

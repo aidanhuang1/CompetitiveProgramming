@@ -43,5 +43,9 @@ while (ss>>word) {
 }
 
 
+string findlength = "abcdef";
+cout<<(char)strlen(findlength)<<endl;
+
+
 return 0;
 }
