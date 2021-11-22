@@ -60,6 +60,7 @@ for (int i=rooms-1; i>=0; i--) {
         flooring-=sq[i];
     } else break;
 }
-printf("%d rooms, %d square metre(s) left over", roomsuse, flooring);
+if (roomsuse==1) printf("%d room, %d square metre(s) left over", roomsuse, flooring);
+else printf("%d rooms, %d square metre(s) left over", roomsuse, flooring);
 return 0;
 }
