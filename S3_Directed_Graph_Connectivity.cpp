@@ -1,41 +1,28 @@
-#include <bits/stdc++.h> 
-#include <iostream>
-#define INF 2e18
-#define MOD 1000000007
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-vector<int> adj[51]; int n, m;  
-vector<pair<int, int>> query;
-bool vis[51];
-
-void dfs(int x, int y, int cur) {
-    vis[cur] = true;
-    if (cur==n) {
-        return;
-    }
-    for (auto i: adj[cur]) {
-        if (!vis[i]) {
-            if (cur==x && i==y) continue;
-            dfs(x, y, i);
+int N, M, adj[52][52], a[2500], b[2500]; bool vis[52];
+bool bfs(){
+    memset(vis, 0, sizeof(vis));
+    queue<int> q;  q.push(1); vis[1]=1;
+    while(!q.empty()){
+        int u = q.front(); q.pop();
+        for(int v=1; v<=N; v++){
+            if(adj[u][v] && !vis[v]) { 
+                vis[v]=1; 
+                q.push(v); 
+                }
         }
     }
-    return;
+    return vis[N];
 }
-int main() {
-cin.sync_with_stdio(0);
-cin.tie(0);
-cin>>n>>m;
-for (int i=0, x, y; i<n; i++) {
-    cin>>x>>y;
-    query.push_back({x,y});
-    adj[x].push_back(y);
-}
-for (auto i: query) {
-    memset(vis, 0, sizeof (vis));
-    dfs(i.first, i.second, 1);
-    cout<< (vis[n] ? "YES" : "NO" )<<endl;
-}
-
-
-return 0;
+int main(){
+    cin >> N >> M;
+    for(int i=0; i<M; i++){
+        cin >> a[i] >> b[i]; adj[a[i]][b[i]] = 1;
+    }
+    for(int i=0; i<M; i++){
+        adj[a[i]][b[i]] = 0;
+        cout << ( bfs()? "YES\n" : "NO\n");
+        adj[a[i]][b[i]] = 1;
+    }
 }
