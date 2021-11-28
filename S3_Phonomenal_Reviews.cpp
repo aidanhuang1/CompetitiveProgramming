@@ -11,7 +11,7 @@ vector<int> oldadj[100001], newadj[100001];
 void rmv(int cur, int prev) {
     for (auto i: oldadj[cur]) {
         if (i!=prev) {
-            rmv(i, cur);
+            rmv(i, cur);    
             if (newadj[i].size()!=0 || pho[i]) {
                 longest++;
                 newadj[cur].push_back(i); newadj[i].push_back(cur);

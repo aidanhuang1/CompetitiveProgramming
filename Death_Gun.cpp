@@ -15,14 +15,8 @@ int vis[901];
 //should we maybe use an adjacency matrix if we want to easily delete connections?
 
 void cyc(int u) {
-    queue<int> q; q.push(u); 
-    while(!q.empty()) {
-        int cur = q.front(); q.pop();
-        for (auto i: adj[cur]) {
-            if (vis[i]==1) { //cycle detected
-
-            }
-        }   
+    if (vis[u]==1) { //this node is in the cycle
+        
     }
 }
  
@@ -44,6 +38,15 @@ for (int i=0; i<m; i++) {
     adj[M1[b]].push_back(M1[a]);
     ind[M1[a]]++;
 }
+
+//detecting cycles and removing
+for (int i=1; i<=900; i++) {
+    cyc(i);
+}
+
+
+
+
 priority_queue<int> q; //should we keep the priority_queue or just use the normal queue?
 for (int i=0; i<M1.size(); i++) {
     if (ind[i]==0) q.push(i);

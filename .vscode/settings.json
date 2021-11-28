@@ -31,7 +31,8 @@
     "unordered_map": "cpp",
     "unordered_set": "cpp",
     "valarray": "cpp",
-    "span": "cpp"
+    "span": "cpp",
+    "ratio": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,
