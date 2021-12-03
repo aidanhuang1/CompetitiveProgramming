@@ -5,46 +5,45 @@
 using namespace std;
 typedef long long ll;
 
-vector<ll> p, w, d;
-ll n;
-ll findtime(ll mid) {
-    ll temptime = 0;
-    for (int i=0; i<n; i++) {
-        ll timeforfriendtowalk = 0;
-        ll distance = abs(mid-p[i])-d[i];
-        if (distance>0) {
-            temptime += distance*w[i];
-            }
-        }
-        return temptime;
-    }
+struct st{
+    ll p, w, d;
+};
 
+int n;
+vector<st> friends;
+
+ll check(int pos) {
+    ll ttime = 0;
+    for (st i: friends) {
+        ll dist = (abs(pos-i.p)-i.d)*i.w;
+        if (dist>0) {
+            ttime+=dist;
+        }
+    }
+    return ttime;
+}
+ 
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-
-cin >> n;
-p.resize(n); w.resize(n); d.resize(n); 
-for (int i=0; i<n; i++) {
-    cin >>p[i] >> w[i]>>d[i];
+cin>>n;
+for (ll i=0, p, w, d; i<n; i++) {
+    cin>>p>>w>>d;
+    friends.push_back({p, w, d});
 }
-
-ll left = 0, right = 2e9, besttime = 2e9, currentpos=0;
-while(left<=right) {
-    ll mid = (left+right)/2; //we test a position for the concert
-    currentpos = findtime(mid);
-    ll immediateleft = findtime(mid-1), immediateright = findtime(mid+1);
-
-    if (immediateleft >= currentpos && immediateright>= currentpos) {
-        break;
-    } else if (immediateleft>currentpos) {
-        left=mid+1;
-    } else if (immediateright>currentpos) {
-        right=mid-1;
+ll left = 0, right = 10000000000;
+while(left<right) {
+    ll mid = (left+right)/2;
+    ll a = check(mid), r = check(mid+1), l = check(mid-1);
+    if (l>=a && a<=r) {
+        cout<<a<<endl; break;
+    } else if (l>=a && a>=r) {
+        left = mid;
+    } else if (l<=a && a<=r) {
+        right = mid;
     }
 }
-cout << currentpos << endl;
-
+ 
 return 0;
 }

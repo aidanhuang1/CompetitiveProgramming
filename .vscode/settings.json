@@ -32,7 +32,8 @@
     "unordered_set": "cpp",
     "valarray": "cpp",
     "span": "cpp",
-    "ratio": "cpp"
+    "ratio": "cpp",
+    "functional": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,

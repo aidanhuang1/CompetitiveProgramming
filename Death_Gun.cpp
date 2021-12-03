@@ -4,62 +4,39 @@
 #define MOD 1000000007
 using namespace std;
 typedef long long ll;
-unordered_map<string, int> M1; unordered_map<int, string> M2;
-vector<int> adj[901]; 
-int ind[901];
-int m, x=0;
 
-int vis[901];
-
-//create a method to detect any cycles at the beginning and remove those cycles before we start with the topo sort
-//should we maybe use an adjacency matrix if we want to easily delete connections?
-
-void cyc(int u) {
-    if (vis[u]==1) { //this node is in the cycle
-        
-    }
-}
- 
+int n;
+vector<int> adj[901];
+unordered_map<string, int> ump;
+vector<string> lis;
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
-
-cin>>m;
-memset(ind, 0, sizeof ind); memset(vis, 0, sizeof vis);
-for (int i=0; i<m; i++) {
-    string a, b;
-    cin>>a>>b;
-    if (M1.count(a)==0) {
-        M1[a] = x; M2[x] = a; x++;
+cin>>n;
+int ind[901];
+memset(ind, 0, sizeof ind);
+for (int i=0; i<n; i++) {
+    string a, b;cin>>a>>b;
+    if(!ump.count(a)) { 
+        ump[a] = lis.size(); lis.push_back(a);
     }
-    if (M1.count(b)==0) {
-        M1[b] = x; M2[x]=b; x++;
+    if(!ump.count(b)) {
+        ump[b] = lis.size(); lis.push_back(b);
     }
-    adj[M1[b]].push_back(M1[a]);
-    ind[M1[a]]++;
+    adj[ump[b]].push_back(ump[a]);
+    ind[ump[a]]++;
 }
+priority_queue<int, vector<int>, greater<int>> pq;
+for (int i=0; i<lis.size(); i++) {
+    if (ind[i]==0) pq.push(i);
+} 
 
-//detecting cycles and removing
-for (int i=1; i<=900; i++) {
-    cyc(i);
-}
-
-
-
-
-priority_queue<int> q; //should we keep the priority_queue or just use the normal queue?
-for (int i=0; i<M1.size(); i++) {
-    if (ind[i]==0) q.push(i);
-}
-while(!q.empty()) {
-    int cur = q.top(); q.pop(); cout<<M2[cur]<<endl;
+while(!pq.empty()) {
+    int cur = pq.top(); pq.pop(); cout<<lis[cur]<<endl; 
     for (auto i: adj[cur]) {
-        --ind[i];
-        if (ind[i]==0) {
-            q.push(i);
-        }
+        if (--ind[i]==0) pq.push(i);
     }
 }
-
+ 
 return 0;
 }
