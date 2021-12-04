@@ -19,33 +19,29 @@ ll check(ll *array, ll largest) {
     }
     return cnt;
 }
-
-ll bs(ll *array, ll n, ll m, ll maxn, ll sum) {
-    ll left = 0, right = sum;
-    while(left<right) {
-        ll mid = (left+right)/2;
-        ll subarrs = check(array, mid);
-        if (subarrs>m) {
-            left=mid+1;
-        } else {
-            right=mid;
-        }
-    }
-    return left;
-}
  
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
-ll n, m, sum=0, maxn=0;
-cin>>n>>m;
+ll n, m, sum=0, minn=0; cin>>n>>m;
 arrsize = n;
 ll array[n];
 for (ll i=0; i<n; i++) {
     cin>>array[i]; sum+=array[i];
-    maxn = max(maxn, array[i]);
+    minn = max(minn, array[i]);
 }
-cout<<bs(array, n, m, maxn, sum)<<endl;
+ll left = minn, right = sum, ans;
+while(left<right) {
+    ll mid = (left+right)/2;
+    ll subarrs = check(array, mid);
+    if (subarrs>m) {
+        left=mid+1;
+    } else {
+        right=mid;
+    }
+}
+cout<<left<<endl;
+
  
 return 0;
 }
