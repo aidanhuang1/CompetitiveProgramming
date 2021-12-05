@@ -4,15 +4,17 @@
 #define MOD 1000000007
 using namespace std;
 typedef long long ll;
+
+int test() {
+    vector<int> p1;
+    return 2;
+}
  
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
-
-int n = 5;
-while(n-->0) {
-    cout<<n<<endl;
-}
+cout<<test()<<endl;
+cout<<-5%4<<endl;
  
 return 0;
 }
