@@ -33,7 +33,10 @@
     "valarray": "cpp",
     "span": "cpp",
     "ratio": "cpp",
-    "functional": "cpp"
+    "functional": "cpp",
+    "__locale": "cpp",
+    "__string": "cpp",
+    "type_traits": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,
