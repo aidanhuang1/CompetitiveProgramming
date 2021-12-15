@@ -9,22 +9,13 @@ const int MM = 1e5+1;
 int n, m;int parent[MM], ranks[MM];
 int find(int x) {
     if (parent[x] != x) {
-        parent[x] = find(x);
+        parent[x] = find(parent[x]);
     }
     return parent[x];
 }
 void uni(int a, int b) {
-    // cout<<a<<" "<<b<<endl;
     a = find(a), b=find(b);
-    
-    if (a==b) return;
-    if (ranks[b]>ranks[a]) {
-        parent[a] = b;
-    } else {
-        parent[b] = a;
-        if (ranks[b]==ranks[a]) 
-        ranks[a]++;
-    }
+    if(a!=b) parent[b] = a;
 }
 int main() {
 cin.sync_with_stdio(0);
@@ -33,20 +24,18 @@ cin.tie(0);
 cin>>n>>m;
 
 for (int i=1; i<=n; i++) {
-    parent[i]=i;ranks[i]=0;
+    parent[i]=i;
 }
 
 for (int i=0, k; i<m; i++) {
-    cin>>k; int prev;
+    cin>>k; int fst;
     for (int j=0, x; j<k; j++) {
         cin>>x;
-        if (j>0) {
-            cout<<prev<<" "<<x;
-            uni(prev, x);
+        if (j==0) {
+            fst = x; continue;
         }
-        prev = x;
+        uni(x, fst);
     }
-    
 }
 vector<int> l;
 for (int i=1; i<=n; i++) {
