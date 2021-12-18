@@ -6,8 +6,6 @@ const int INF = 0x3F3F3F3F;
 const int MOD = 1e9+7;
 const int MM = 1e5+1;
 
-vector<pair<string, string>> v;
-
 int main() {
 freopen("citystate.in", "r", stdin);
 freopen("citystate.out", "w", stdout);
@@ -15,21 +13,16 @@ cin.sync_with_stdio(0);
 cin.tie(0);
 
 int n; cin>>n;
-for (int i=0; i<n; ++i) {
+map<string, int> m;
+int total =0;
+for (int i=0; i<n; i++) {
     string a, b; cin>>a>>b;
-    v.push_back({a, b});
+    a = a.substr(0, 2);
+    
+    if(a!=b)total+= m[a+b];
+    m[b+a]++;
 }
-int cnt = 0;
-for (int i=0; i<n; ++i) {
-    for (int j=i+1; j<n; ++j) {
-        if (v[i].first[0]==v[j].second[0] && v[i].first[1]==v[j].second[1]) {
-            if (v[i].second[0]==v[j].first[0] && v[i].second[1]==v[j].first[1]) {
-                cnt++;
-            }
-        }
-    }
-}
-cout<<cnt<<"\n";
+cout<<total<<"\n";
 
 return 0;
 }
