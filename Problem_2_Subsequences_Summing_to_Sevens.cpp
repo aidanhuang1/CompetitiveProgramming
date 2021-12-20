@@ -16,14 +16,20 @@ cin.tie(0);
 ll n; cin>>n;
 vector<ll> v(n);vector<ll> psum(n+1);
 for (int i=0; i<n; i++) {
-    cin>>v[i];psum[i+1] = psum[i]+v[i];
+    cin>>v[i];
+    psum[i+1] = (psum[i]+v[i])%7;
 }
     
 int ans = 0;
-for (int i=0; i<n+1; i++) {
-    for (int j=i; j<n+1; j++) {
-        ll temp = psum[j]-psum[i];
-        if (temp%7==0) ans = max(ans, j-i);
+int vis[n+1];
+memset(vis, -1, sizeof vis);
+for (int i=0; i<=n; i++) {
+    if (vis[psum[i]]==-1) {
+        vis[psum[i]]=i;
+        
+        
+    } else {
+        ans = max(ans, i-vis[psum[i]]);
     }
 }
 cout<<ans<<"\n";

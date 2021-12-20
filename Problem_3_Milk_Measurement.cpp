@@ -28,7 +28,7 @@ for (auto i: v) {
     vector<string> temp;
     if (i.second.first=="Mildred") {
         mildred+=i.second.second;
-    } else if (i.second.first=="Elsie") {
+    } else if (i.second.first=="Elsie") {   
         elsie+=i.second.second;
     } else if (i.second.first=="Bessie") {
         bessie+=i.second.second;
