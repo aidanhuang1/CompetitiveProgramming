@@ -9,7 +9,7 @@ const int MM = 1e5+1;
 
 int main() {
 //freopen(, , stdin);
-//freopen(, , stdout);
+//freopen(, , stdout);  
 cin.sync_with_stdio(0);
 cin.tie(0);
 
@@ -22,6 +22,14 @@ for (int i=1; i<=n; i++) {
     else if (a=='H') h[i]++;
     else if (a=='S') s[i]++;
 }
+
+int ans = 0;
+for (int i=1; i<=n; i++) {
+    int start = max(h[i], max(p[i], s[i]));
+    int end = max(max(h[n]-h[i], p[n]-p[i]), s[n]-s[i]);
+    ans = max(ans, start+end);
+}
+cout<<ans<<'\n';
 
 return 0;
 }
