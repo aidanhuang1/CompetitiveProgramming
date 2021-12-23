@@ -6,31 +6,28 @@ const int MOD = 1e9+7;
 const int MM = 1e5+1;
 
 
-
 int main() {
-freopen("circlecross.in", "r", stdin);
-freopen("circlecross.out", "w", stdout);
+freopen("maxcross.in", "r", stdin);
+freopen("maxcross.out", "w", stdout);
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-int cnt = 0;
-string a; cin>>a;
-int start[52], end[52];
-memset(start, -1, sizeof start); memset(end, -1, sizeof end);
-for (int i=0; i<52; i++) {
-    if (start[a[i]-'A']==-1) {
-        start[a[i]-'A'] = i;
-    } else {
-        end[a[i]-'A']=i;
-    }
+int n, k, b;
+cin>>n>>k>>b;
+vector<int> pref(n+1);
+bool broken[n+1]; memset(broken, 0, sizeof broken);
+for (int i=0; i<b; i++) {
+    int a; cin>>a;
+    broken[a] = 1;
 }
-for (int i=0; i<52; i++) {
-    for (int j=0; j<52; j++) {
-        if (start[i]<start[j] && end[i]<end[j] && start[j]<end[i]) {
-            cnt++;
-        }
-    }
+for (int i=1; i<=n; i++) {
+    pref[i] = pref[i-1];
+    pref[i]+=broken[i];
 }
-cout<<cnt<<"\n";
+int ans = (int)1e6;
+for (int i=0; i<=n-k; i++) {
+    ans = min(ans, pref[i+k]-pref[i]);
+}   
+cout<<ans<<endl;
 return 0;
 }

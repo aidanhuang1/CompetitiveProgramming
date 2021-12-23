@@ -12,10 +12,8 @@ int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-map<string, int> m = {{"abc", 1}, {"cbd", 2}};
-for (auto i: m) {
-    cout<<i.first<<i.second<<endl;
-}
-
+vector<int> v = {3,6,8,4,3,2,1};
+sort(v.rbegin(), v.rend());
+for (auto i: v) cout<<i<<endl;
 return 0;
 }
