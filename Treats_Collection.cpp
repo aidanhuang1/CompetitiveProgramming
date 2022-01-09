@@ -11,23 +11,17 @@ int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-ll n, k; cin>>n>>k;
-vector<ll> v(n);
-for (int i=0; i<n; i++) {
-    cin>>v[i];
+int n, k; cin>>n>>k;
+vector<ll> treats;
+for (int i=0; i<n; i++) {ll a; cin>>a; treats.push_back(a);}
+ll minimum = INT_MAX;
+for (int i=0; i<n-k+1; i++) {
+    ll left = treats[i], right = treats[i+k-1];
+    if (left>=0 &&right>=0) minimum = min(minimum, abs(right));
+    else if (left<0 && right<0) minimum = min(minimum, abs(left));
+    else minimum = min(minimum, (min(abs(right), abs(left))*2+max(abs(right), abs(left))));
 }
-sort(v.begin(), v.end());
-for (int i=0; i<n; i++) {
-    if (i+k-1>=n) break;
-    ll left = v[i], right = v[i+k-1];
-    if (left<=0 && right<=0) {
-        cout<<abs(v[i])<<endl;
-    } else if (left<=0 && right>=0 ) {
-        cout<<abs(v[i+k-1])+abs(v[i-k-1])+abs(v[i])<<endl;
-    } else if (left>=0 && right>=0) {
-        cout<<abs(v[i+k-1])<<endl;
-    }
-}
+cout<<minimum<<endl;
 
 return 0;
 }
