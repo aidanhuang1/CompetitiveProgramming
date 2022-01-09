@@ -14,7 +14,6 @@ void dfs(int u) {
     for (auto i: adj[u]) {
         if (vis[i]==1) {
             ans = min(ans, d[u]-d[i]+1);
-            return;
         } else if (vis[i]==0) {
             d[i]=d[u]+1;
             dfs(i); 
@@ -33,7 +32,9 @@ cin>>n;for (int i=1; i<=n; i++) {
 }
 memset(vis, 0, sizeof vis); memset(d, 0, sizeof d);
 for (int i=1; i<=n; i++) {
-    if (vis[i]==0) dfs(i);
+    if (vis[i]==0) {
+        dfs(i);
+    }
 }
 cout<<ans<<endl;
 
