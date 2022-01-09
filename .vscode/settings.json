@@ -36,7 +36,8 @@
     "functional": "cpp",
     "__locale": "cpp",
     "__string": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "memory": "cpp"
   },
   "files.exclude": {
     "**/*.exe": true,

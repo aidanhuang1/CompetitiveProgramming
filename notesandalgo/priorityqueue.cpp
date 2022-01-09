@@ -7,12 +7,16 @@
 using namespace std;
 typedef long long ll;
 
+struct temp {
+    int a;
+    int b;
+}
  
 int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-priority_queue<cow> pq;
+priority_queue<temp> pq;
  
 return 0;
 }
