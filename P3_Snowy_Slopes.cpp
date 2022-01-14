@@ -11,7 +11,12 @@ int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-cout<<(9%3!=0)<<endl;
+int n, m; cin>>n>>m;
+vector<int> points;
+for (int i=0; i<n; i++) {
+    ll x, y; cin>>x>>y;
+    points.pu
+}
 
 return 0;
 }
