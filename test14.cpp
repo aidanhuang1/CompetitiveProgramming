@@ -11,7 +11,8 @@ int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-cout<<(9%3!=0)<<endl;
+map<int, int> m;
+m[0]=1;
 
 return 0;
 }

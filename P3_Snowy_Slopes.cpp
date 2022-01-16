@@ -12,28 +12,27 @@ cin.sync_with_stdio(0);
 cin.tie(0);
 
 int n, m; cin>>n>>m;
-vector<pair<ll, ll>> points; vector<long double> slope;
+vector<pair<ll, ll>> points; vector<pair<ll, ll>> kd;
 for (int i=0; i<n; i++) {
     ll x, y; cin>>x>>y;
     points.push_back({x, y});
 }
 for (int i=0; i<m; i++) {
     ll k, d; cin>>k>>d;
-    slope.push_back(k*1.0/d);
+    kd.push_back({k, d});
 }
-unordered_set<long double> pointintercepted[n];
+map<ll, ll> mp;
 for (int i=0; i<n; i++) {
-    for (int j=i+1; j<n; j++) {
-        long double gradient = (points[j].second-points[i].second)*1.0/(points[j].first-points[i].first);
-        for (auto s: slope) {
-            if (s==gradient) {
-                if (pointintercepted[i].size()==0 && pointintercepted[j].size()==0) {
-
-                }
-            }
-        }
-        
+    for (int j=0; j<m; j++) {
+        ll temp = (kd[j].first*points[i].first)-(kd[j].second*points[i].second);
+        cout<<temp<<endl;
+        mp[temp]++;
     }
+}
+for (auto i: mp) {
+    // cout<<(i.second*(i.second-1))/2<<endl;
+    // cout<<i.first<<" "<<i.second<<endl;
+    
 }
 
 return 0;
