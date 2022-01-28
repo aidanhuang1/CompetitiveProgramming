@@ -18,11 +18,6 @@ for (ll i=0, x; i<n; i++) {
     cin>>x; if (x%2==0) even++; else odd++;
 }
 
-ll ans1 = min(odd, even);
-
-ll temp = even%2;
-ll ans2 = min(temp, odd) + even/2;
-cout<<max(ans1, ans2)<<endl;
-
+cout<<(odd/2)+(even/2)<<endl;
 return 0;
 }   
