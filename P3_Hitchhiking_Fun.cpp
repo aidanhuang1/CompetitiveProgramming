@@ -1,57 +1,32 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<int, pii> piii;
-const int INF = 0x3F3F3F3F;
-const int MOD = 1e9+7;
-const int MM = 1e5+1;
-
-int n, m;
-vector<pii> adj[MM];
-pii dist[MM]; //danger, non-danger
-bool vis[MM];
-int main() {
-cin.sync_with_stdio(0);
-cin.tie(0); 
-
-cin>>n>>m;
-memset(dist, INF, sizeof dist); memset(vis, 0, sizeof vis);
-
-priority_queue<piii, vector<piii>, greater<piii>> pq;
-
-for (int i=0, a, b, d; i<m; i++) {
-    cin>>a>>b>>d;
-    adj[a].push_back({b,d}); adj[b].push_back({a,d});
-} 
-dist[1].first = 0, dist[1].second = 0;
-pq.push({0, {0, 1}}); //danger, nondanger, to
-while(!pq.empty()) {
-    piii temp = pq.top(); pq.pop();
-    int u =temp.second.second;
-    if (!vis[u]) {
-        vis[u] = true;
-        for (pii e: adj[u]) {
-            int v = e.first, w = e.second;
-            if (w==1) {
-                if (!vis[v] && dist[u].first+1<dist[v].first) {
-                    dist[v].first = dist[u].first+1;
-                    dist[v].second = dist[u].second;
-                    pq.push({dist[v].first, {dist[v].second, v}});
-                }
-            } else if (w==0) {
-                if (!vis[v] && (dist[u].second+1<dist[v].second || dist[u].first<dist[v].first)) {
-                    dist[v].first = dist[u].first;
-                    dist[v].second = dist[u].second+1;
-                    pq.push({dist[v].first, {dist[v].second, v}});
-
-                }
+typedef pair<int, int> pi;
+typedef pair<pi, int> pii;  //< <int, int>, int >
+const int MM = 1e5+5;
+int N, M; vector<pi> adj[MM]; bool vis[MM]; pi dis[MM];
+int main(){
+    cin >> N >> M;
+    for(int i=1, u, v, w; i<=M; i++){
+        cin>>u>>v>>w;
+        adj[u].push_back({v,w}); adj[v].push_back({u,w});
+    }
+    priority_queue<pii, vector<pii>, greater<pii> > q;
+    memset(dis, 0x3f, sizeof(dis)); dis[1]={0, 0};
+    q.push({dis[1], 1});//{dangerous, nondangerous}, to}
+    while(!q.empty()){
+        pii cur = q.top(); q.pop();
+        pi d = cur.first; int u = cur.second;
+        if(vis[u]) continue;
+        vis[u] = 1;
+        for(pi e : adj[u]){
+            int v=e.first, w = e.second;
+            pi tmp={dis[u].first + w, dis[u].second+1}; //{dangerous, non-dangerous}
+            if(dis[v] > tmp){
+                dis[v] = tmp;
+                q.push({dis[v], v});
             }
         }
     }
-}
-if (dist[n].first==INF) cout<<-1<<endl; else
-cout<<dist[n].first<<" "<<dist[n].second<<endl;
-
-return 0;
+    if(!vis[N]) cout << -1 << endl;
+    else cout << dis[N].first << " " << dis[N].second << endl;
 }

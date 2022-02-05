@@ -1,124 +1,49 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<int, pii> piii;
-const int INF = 0x3F3F3F3F;
-const int MOD = 1e9+7;
-const int MM = 1e5+1;
-
-int n, m;
-char grid[5][101];
-int dist[5][101];
-bool vis[5][101];
-
-bool bounds(int row, int col) {
-    if (row<0 || row>=n || col<0 || col>=m || grid[row][col]=='W') return false;
-    return true;
+const int MM = 103;
+#define f first
+#define s second
+typedef pair<int, int> pi;
+int N, M, dir[4][2]={{-1,0},{1,0},{0,-1},{0,1}}, sr, sc, dis[MM][MM]; char g[MM][MM];
+vector<pi> cam; bool vis[MM][MM]; queue<pi> q;
+void push(int nr, int nc, int d){
+    if(g[nr][nc] != 'W' && !vis[nr][nc] && d < dis[nr][nc]) { q.push({nr, nc}); dis[nr][nc] = d; }
 }
-bool bounds2(int row, int col) {
-    if (row<0 || row>=n || col<0 || col>=m || grid[row][col]=='W' || vis[row][col]) return false;
-    return true;
-}
-
-void camerasearchL(int row, int col) {
-    if (!bounds(row, col)) return;
-    if (grid[row][col] == '.') {
-        grid[row][col] = 'W';
+int main(){
+    cin >> N >> M;
+    for(int i=1; i<=N; i++){
+        for(int j=1; j<=M; j++){
+            cin >> g[i][j];
+            if(g[i][j] == 'S') { sr = i; sc = j; g[i][j] = '.';}
+            if(g[i][j] == 'C') cam.push_back({i, j});
+        }
     }
-    return camerasearchL(row, col-1);
-}
-void camerasearchU(int row, int col) {
-    if (!bounds(row, col)) return;
-    if (grid[row][col] == '.') {
-        grid[row][col] = 'W';
-    }
-    return camerasearchU(row-1, col);
-}
-void camerasearchR(int row, int col) {
-    
-    if (!bounds(row, col)) return;
-    if (grid[row][col] == '.') {
-        grid[row][col] = 'W';
-    }
-    return camerasearchR(row, col+1);
-}
-void camerasearchD(int row, int col) {
-    if (!bounds(row, col)) return;
-    if (grid[row][col] == '.') {
-        grid[row][col] = 'W';
-    }
-    return camerasearchD(row+1, col);
-}
-
-void bfs(int r, int c, int s) {
-    queue<piii> q; q.push({r, {c, s}});
-    while(!q.empty()) {
-        piii u = q.front(); q.pop();
-        int row = u.first, col = u.second.first, steps = u.second.second;
-        if (!bounds2(row, col)) continue;
-        if (steps<dist[row][col]) {
-            dist[row][col] = steps;
-            if (vis[row][col]) {
-                vis[row][col] = false;
+    for(pi e : cam){  //preprocess camera
+        for(int k=0; k < 4; k++){
+            int nr = e.f, nc = e.s;
+            while(true){
+                nr += dir[k][0]; nc += dir[k][1];
+                if(g[nr][nc] == 'W') break;
+                if(g[nr][nc]=='.') vis[nr][nc]=true;
             }
-        }    vis[row][col] = true;
-
-        if (grid[row][col]=='D') {
-            q.push({row+1, {col, steps}});
-        } else if (grid[row][col]=='R') {
-            bfs(row, col+1, steps);
-        } else if (grid[row][col]=='U') {
-            bfs(row-1, col, steps);
-        } else if (grid[row][col]=='L') {
-            bfs(row, col-1, steps);
-        } else {
-            bfs(row-1, col, steps+1);
-            bfs(row+1, col, steps+1);
-            bfs(row, col+1, steps+1);
-            bfs(row, col-1, steps+1);
         }
     }
-    
-}
-
-int main() {
-cin.sync_with_stdio(0);
-cin.tie(0);
-
-cin>>n>>m;
-int srow, scol;
-vector<pii> cam, spaces;
-memset(vis, 0, sizeof vis); memset(dist, INF, sizeof dist);
-for (int i=0; i<n; i++) {
-    for (int j=0; j<m; j++) {
-        cin>>grid[i][j];
-        if (grid[i][j]=='S') {
-            srow = i, scol = j;
-            dist[i][j] = 0;
-        } else if (grid[i][j]=='C') {
-            cam.push_back({i,j});
-        } else if (grid[i][j]=='W') {
-            vis[i][j] = true;   
-        } else if (grid[i][j]=='.') {
-            spaces.push_back({i,j});
-        }
+    memset(dis, 0x3f, sizeof(dis));
+    if(!vis[sr][sc]) { q.push({sr, sc}); dis[sr][sc] = 0;}
+    while(!q.empty()){
+        int r = q.front().f , c = q.front().s; q.pop();
+        if(g[r][c] == '.'){
+            for(int k=0; k<4; k++){
+                int nr = r + dir[k][0], nc = c + dir[k][1];
+                push(nr, nc, dis[r][c]+1);
+            }
+        }else if(g[r][c] == 'U') push(r-1, c, dis[r][c]);
+        else if(g[r][c] == 'D') push(r+1, c, dis[r][c]);
+        else if(g[r][c] == 'L') push(r, c-1, dis[r][c]);
+        else if(g[r][c] == 'R') push(r, c+1, dis[r][c]);
     }
-}
-
-for (pii i: cam) {
-    camerasearchL(i.first, i.second-1);
-    camerasearchD(i.first+1, i.second);
-    camerasearchU(i.first-1, i.second);
-    camerasearchR(i.first, i.second+1);
-    grid[i.first][i.second]= true;
-}
-
-bfs(srow, scol, 0);
-for (pii i: spaces) {
-    if (dist[i.first][i.second]==INF) cout<<-1<<"\n"; else
-    cout<<dist[i.first][i.second]<<"\n";
-}
-
-return 0;
+    g[sr][sc] = 'S';
+    for(int i=1; i<=N; i++)
+        for(int j=1; j<=M; j++)
+            if(g[i][j] == '.')  cout << (dis[i][j] > N*M? -1 : dis[i][j]) << endl;
 }
