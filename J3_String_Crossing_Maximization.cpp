@@ -23,26 +23,24 @@ for (auto i: b) {
     freqb[i-'A']++;
 }
 
-int highestafreq = -1, highestafreqchar; //string a
-int lowestatimesb = INF, lowestatimesbchar;
-int crossings = 0;
+
+int ans = 0;
+
 for (int i=0; i<26; i++) {
-    crossings+=(freqa[i]*freqb[i]);
-    if (highestafreq<freqa[i]) {
-        highestafreq = freqa[i];
-        highestafreqchar = i;
+    freqb[i]--;
+    for (int j=0; j<26; j++) {
+        freqb[j]++;
+        int temp = 0;
+        for (int k=0; k<26; k++) {
+            if (freqa[k]>0 && freqb[k]>0)
+            {temp+=(freqa[k]*freqb[k]);
+            ans = max(ans, temp);}
+        }
+        freqb[j]--;
     }
-    if ((freqa[i]>0 || freqb[i]>0) && freqa[i]*freqb[i]<lowestatimesb) {
-        lowestatimesb = freqa[i]*freqb[i];
-        lowestatimesbchar = i;
-    }
+    freqb[i]++;
 }
-crossings+=highestafreq;
-
-if (freqa[lowestatimesbchar]>0 && freqb[lowestatimesbchar]>0)
-crossings-=(max(freqa[lowestatimesbchar], freqb[lowestatimesbchar]));
-
-cout<<crossings<<endl;
+cout<<ans<<endl;
 
 return 0;
 }
