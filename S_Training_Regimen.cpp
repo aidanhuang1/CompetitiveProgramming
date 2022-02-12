@@ -30,7 +30,9 @@ int main(){
     while(!q.empty()){
         ll d = q.top().f.f; 
         int tt = q.top().f.s, u = q.top().s; 
+
         q.pop();
+
         if(d > dis[u]) continue;
         if(dis[u] > lvl){
             ans += 1LL*mi*(dis[u]-lvl); lvl = dis[u];
@@ -38,7 +40,10 @@ int main(){
         if(u == N) { printf("%lld\n", ans); return 0;}
         mi = min(mi, t[u]);
         for(pi e: adj[u])
-            if(e.s < dis[e.f]){ dis[e.f] = e.s; q.push({{dis[e.f], t[e.f]}, e.f}); }
+            if(e.s < dis[e.f]) { 
+                dis[e.f] = e.s; 
+                q.push({{dis[e.f], t[e.f]}, e.f});  
+            }
     }
     printf("-1\n");
 }
