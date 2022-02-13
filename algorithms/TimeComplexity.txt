@@ -1,0 +1,11 @@
+n <= 10    O(n!)   you can pass
+n <= 20    O(2^n)  can pass
+n <= 50    O(n^5) can pass
+n < = 100  O(n^4) can pass
+n <= 500     O(n^3) can pass
+n <= 3000   O(n^2 logn) can pass
+n <= 5000   O(n^2) can pass
+n < = 100,000    O(nlogn) or O(nsqrt(n)) can pass
+n < = 10^6     O(nlogn) and O(n) can pass
+n <= 10^12      O(sqrt(n)) can pass
+n <= 10^18     O(log(n)) can pass 
