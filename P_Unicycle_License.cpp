@@ -13,17 +13,9 @@ int main() {
 cin.sync_with_stdio(0);
 cin.tie(0);
 
-int n; cin>>n;
-int array[n+1];
-for (int i=1; i<=n; i++) {
-    cin>>array[i];
-}
-int dp[n+1];
-memset(dp, 0, sizeof dp);
-dp[1] = array[1];
-for (int i=2; i<=n; i++) {
-    dp[i] = max(dp[i-2]+array[i], dp[i-1]);
-}
-cout<<dp[n]<<endl;
+ll m; cin>>m;
+ll a = 12, b = -5, c = -(m-1);
+
+cout<<setprecision(6)<<fixed<<((-b + sqrt(pow(b, 2)-4*a*c))/(2*a))<<endl;
 return 0;
 }
